@@ -36,9 +36,9 @@
     "espressif32"
   ],
   "headers": [
-    "scr/matter_endpoints/MatterAirQualitySensor.h",
-    "scr/matter_endpoints/MatterRainSensor.h",
-    "scr/matter_endpoints/MatterAmbientLightSensor.h",
-    "scr/matter_endpoints/MatterFlowSensor.h"
+    "scr/MatterAirQualitySensor.h",
+    "scr/MatterRainSensor.h",
+    "scr/MatterAmbientLightSensor.h",
+    "scr/MatterFlowSensor.h"
   ]
 }
