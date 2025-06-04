@@ -1,0 +1,10 @@
+name=esp32(arduino): matter-extra-endpoints
+version=1.0.0
+author=Eating1
+maintainer=Jan Reiner <jan.reiner@icloud.com>, DracoRex462
+sentence=Extra Matter endpoints for ESP32 using arduino-esp32-matter.
+paragraph=This library adds support for additional Matter endpoints such as air quality, rain, ambient light, and flow sensors to the arduino-esp32-matter platform. Requires ESP32 and Matter.h
+category=Communication
+url=https://github.com/EatingJan1/arduino-esp32-matter-extra-endpoints
+architectures=esp32
+includes=Matter.h
