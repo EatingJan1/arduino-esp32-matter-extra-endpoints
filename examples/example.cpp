@@ -1,10 +1,16 @@
 #include <Matter.h>
 #include <WiFi.h>
+#include <scr/MatterAirQualitySensor.h>
+#include <scr/MatterAirQualitySensor.h>
+#include <scr/MatterFlowSensor.h>
+#include <scr/MatterLightSensor.h>
+#include <scr/MatterRainSensorSensor.h>
 
 // Custom Matter Components
 MatterAirQualitySensor airSensor;
+MatterAirQualitySensor co2;
 MatterRainSensor rainSensor;
-MatterAmbientLightSensor lightSensor;
+MatterLightSensor lightSensor;
 MatterFlowSensor flowSensor;
 
 const char *ssid = "your-ssid";
@@ -106,11 +112,11 @@ void loop()
         Serial.printf("CO₂: %.1f ppm\r\n", co2);
 
         bool rain = getSimulatedRain();
-        rainSensor.setRainDetected(rain);
+        rainSensor.setRain(rain);
         Serial.printf("Rain: %s\r\n", rain ? "yes" : "no");
 
         float lux = getSimulatedLight();
-        lightSensor.setIlluminance(lux);
+        lightSensor.setlight(lux);
         Serial.printf("Light: %.1f Lux\r\n", lux);
 
         float flow = getSimulatedFlow();
