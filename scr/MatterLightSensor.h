@@ -35,7 +35,7 @@ public:
     // begin Matter light Sensor endpoint with initial float light percent
     bool begin(double light = 0.00)
     {
-        return begin(static_cast<uint16_t>(light * 100.0f));
+        return begin(static_cast<uint16_t>(light));
     }
 
     // stop processing light Sensor Matter events
@@ -45,7 +45,7 @@ public:
     bool setlight(double light)
     {
 
-        return setRawLight(static_cast<uint16_t>(light * 100.0f));
+        return setRawLight(static_cast<uint16_t>(light));
     }
 
 

@@ -128,7 +128,7 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
         rawlight = _rawLight;
     }
 
-    log_v("Light Sensor set to %.02f%%", (float)_rawLight / 100.0);
+    log_v("Light Sensor set to %.02f%%", (float)_rawLight);
     return true;
 }
 
