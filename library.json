@@ -1,6 +1,6 @@
 {
   "name": "arduino-esp32-matter-extra-endpoints",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extra Matter endpoints for ESP32 using arduino-esp32-matter.",
   "keywords": [
     "matter",
