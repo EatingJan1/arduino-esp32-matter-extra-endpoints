@@ -49,23 +49,29 @@ public:
     {
         return (double)rawCO2;
     }
-
+    
     void operator=(double ppm)
     {
         setCO2(ppm);
     }
-
+    
     operator double()
     {
         return (double)getCO2();
     }
-
+    
     bool attributeChangeCB(uint16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val);
-
-protected:
+    
+    double getAirQuality()
+    {
+        return (double)rawaq;
+    }
+    
+    protected:
     bool started = false;
 
     uint16_t rawCO2 = 0;
+    uint8_t rawaq = 0;
 
 
     // internal functions
