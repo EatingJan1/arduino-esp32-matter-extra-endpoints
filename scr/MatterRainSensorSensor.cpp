@@ -17,7 +17,7 @@
 
 #include <Matter.h>
 #include <app/server/Server.h>
-#include "matter_endpoint/MatterRainSensorSensor.h"
+#include "MatterRainSensorSensor.h"
 
 using namespace esp_matter;
 using namespace esp_matter::endpoint;

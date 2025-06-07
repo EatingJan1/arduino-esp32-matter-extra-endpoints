@@ -17,7 +17,7 @@
 
 #include <Matter.h>
 #include <app/server/Server.h>
-#include "matter_endpoint/MatterFlowSensor.h"
+#include "MatterFlowSensor.h"
 
 using namespace esp_matter;
 using namespace esp_matter::endpoint;
