@@ -15,7 +15,7 @@ This project includes four custom Matter endpoint classes:
 * **MatterAirQualitySensor**
 
   * Supports CO₂ measurement (ppm).
-  * Note: currently limited to CO₂ only, no full air quality index support yet.
+  * Air quality depends on CO₂.
 
 * **MatterRainSensor**
 
