@@ -65,7 +65,7 @@ bool MatterLightSensor::begin(uint16_t _rawLight)
 
 
   light_sensor::config_t light_sensor_config;
-  light_sensor_config.illuminance_measurement.illuminance_measured_value = _rawLight;
+  light_sensor_config.illuminance_measurement.illuminance_measured_value = log10(_rawLight)*10000 + 1;
   light_sensor_config.illuminance_measurement.illuminance_min_measured_value = nullptr;
   light_sensor_config.illuminance_measurement.illuminance_max_measured_value = nullptr;
 
@@ -91,10 +91,9 @@ void MatterLightSensor::end()
     started = false;
 }
 
-bool MatterLightSensor::setRawLight(uint16_t _rawLight) 
-
-
+bool MatterLightSensor::setRawLight(uint16_t _rawLight)
 {
+    
     if (!started) 
     {
         log_e("Matter Light Sensor device has not begun.");
@@ -107,6 +106,8 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
         return true;
     }
 
+
+
     esp_matter_attr_val_t attrVal = esp_matter_invalid(NULL);
 
     if (!getAttributeVal(IlluminanceMeasurement::Id, IlluminanceMeasurement::Attributes::MeasuredValue::Id, &attrVal)) 
@@ -115,9 +116,13 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
         return false;
     }
 
+    Serial.print("In light setter");
+    Serial.print(_rawLight);
+
+
     if (attrVal.val.u16 != _rawLight) 
     {
-        attrVal.val.u16 = _rawLight;
+        attrVal.val.u16 = log10(_rawLight)*10000 + 1;
 
         if (!updateAttributeVal(IlluminanceMeasurement::Id, IlluminanceMeasurement::Attributes::MeasuredValue::Id, &attrVal)) 
         {
@@ -129,6 +134,7 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
     }
 
     log_v("Light Sensor set to %.02f%%", (float)_rawLight);
+    Serial.printf("Light Sensor set to %d", _rawLight);
     return true;
 }
 

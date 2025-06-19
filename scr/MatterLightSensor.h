@@ -42,16 +42,16 @@ public:
     void end();
 
     // set the light percent with 1/100th of a percent precision
-    bool setlight(double light)
+    bool setlight(uint32_t light)
     {
 
         return setRawLight(static_cast<uint16_t>(light));
     }
 
 
-    double getlight()
+    uint16_t getlight()
     {
-        return (double)rawlight / 100.0;
+        return rawlight;
     }
 
     // assignment operator for convenience
