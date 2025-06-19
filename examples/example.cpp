@@ -1,10 +1,9 @@
 #include <Matter.h>
 #include <WiFi.h>
-#include <scr/MatterAirQualitySensor.h>
-#include <scr/MatterAirQualitySensor.h>
-#include <scr/MatterFlowSensor.h>
-#include <scr/MatterLightSensor.h>
-#include <scr/MatterRainSensorSensor.h>
+#include <matter_endpoints/MatterAirQualitySensor.h>
+#include <matter_endpoints/MatterFlowSensor.h>
+#include <matter_endpoints/MatterLightSensor.h>
+#include <matter_endpoints/MatterRainSensorSensor.h>
 
 // Custom Matter Components
 MatterAirQualitySensor airSensor;
