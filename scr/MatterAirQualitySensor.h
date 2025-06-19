@@ -62,9 +62,9 @@ public:
     
     bool attributeChangeCB(uint16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val);
     
-    double getAirQuality()
+    uint8_t getAirQuality()
     {
-        return (double)rawaq;
+        return rawaq;
     }
     
     protected:
