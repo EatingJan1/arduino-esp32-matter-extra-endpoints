@@ -3,7 +3,7 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
@@ -11,6 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
+// Modifications 2025 by Blue Rubber Duck
+// - Change MatterEndPoint to Matter illuminance Sensor
+//
+// This file is based on code from the Espressif Matter library:
+// https://github.com/espressif/arduino-esp32/tree/master/libraries/Matter/src/MatterEndpoints
 
 #pragma once
 #include <sdkconfig.h>
@@ -27,18 +33,18 @@ public:
   // begin Matter Flow Sensor endpoint with initial float humidity percent
   bool begin(double humidityPercent = 0.00) {
 
-    return begin(static_cast<uint16_t>(humidityPercent * 100.0f));
+    return begin(static_cast<uint16_t>(humidityPercent * 10.0f));
   }
   // this will just stop processing Flow Sensor Matter events
   void end();
 
   // set the humidity percent with 1/100th of a percent precision
   bool setFlow(double humidityPercent) {
-    return setRawFlow(static_cast<uint16_t>(humidityPercent * 100.0f));
+    return setRawFlow(static_cast<uint16_t>(humidityPercent * 10.0f));
   }
   // returns the reported float humidity percent with 1/100th of precision
   double getFlow() {
-    return (double)rawFlow / 100.0;
+    return (double)rawFlow / 10.0;
   }
   // double conversion operator
   void operator=(double humidityPercent) {

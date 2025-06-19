@@ -167,7 +167,13 @@ bool MatterAirQualitySensor::setRawCO2(uint16_t _rawCO2)
     }
     int enumaq;
 
-    if (_rawCO2 <= 800)
+
+
+    if(_rawCO2 == 0)
+    {
+        enumaq = 0; // Undefined
+    }
+    else if (_rawCO2 <= 800)
     {
         enumaq = 1; // Excellent
     }
@@ -185,12 +191,23 @@ bool MatterAirQualitySensor::setRawCO2(uint16_t _rawCO2)
     }
     else
     {
-        enumaq = 4; // Poor
+        enumaq = 5; // Poor
     }
 
     attrValAQ = esp_matter_enum8(enumaq);
     updateAttributeVal(AirQuality::Id, AirQuality::Attributes::AirQuality::Id, &attrValAQ);
+
+    if(rawaq == enumaq)
+    {
+        return false;
+    }
+    
     rawaq = enumaq;
+
+    Serial.print("un dos dres");
+    Serial.println(enumaq);
+    Serial.println(rawaq);
+    
     log_v("Air Quality Sensor set to mode %d", attrValAQ);
 
     return true;

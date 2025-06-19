@@ -3,7 +3,7 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
@@ -11,6 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
+// Modifications 2025 by Blue Rubber Duck
+// - Change MatterEndPoint to Matter illuminance Sensor
+//
+// This file is based on code from the Espressif Matter library:
+// https://github.com/espressif/arduino-esp32/tree/master/libraries/Matter/src/MatterEndpoints
 
 #pragma once
 #include <sdkconfig.h>
