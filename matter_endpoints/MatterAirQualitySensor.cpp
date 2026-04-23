@@ -204,9 +204,6 @@ bool MatterAirQualitySensor::setRawCO2(uint16_t _rawCO2)
     
     rawaq = enumaq;
 
-    Serial.print("un dos dres");
-    Serial.println(enumaq);
-    Serial.println(rawaq);
     
     log_v("Air Quality Sensor set to mode %d", attrValAQ);
 

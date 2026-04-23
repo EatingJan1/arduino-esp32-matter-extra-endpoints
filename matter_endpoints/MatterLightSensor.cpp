@@ -54,9 +54,7 @@ bool MatterLightSensor::attributeChangeCB(uint16_t endpoint_id, uint32_t cluster
 
 bool MatterLightSensor::begin(uint16_t _rawLight) 
 {
-    Serial.print("1");
     ArduinoMatter::_init();
-    Serial.print("2");
     if (getEndPointId() != 0) 
     {
         log_e("Matter Light Sensor with Endpoint Id %d already exists.", getEndPointId());
@@ -69,20 +67,18 @@ bool MatterLightSensor::begin(uint16_t _rawLight)
   light_sensor_config.illuminance_measurement.illuminance_min_measured_value = nullptr;
   light_sensor_config.illuminance_measurement.illuminance_max_measured_value = nullptr;
 
-  Serial.print("3");
     endpoint_t *endpoint = light_sensor::create(node::get(), &light_sensor_config, ENDPOINT_FLAG_NONE, (void *)this);
     if (endpoint == nullptr) 
     {
         log_e("Failed to create Light Sensor endpoint.");
         return false;
     }
-    Serial.print("4");
+
     rawlight = _rawLight;
     setEndPointId(endpoint::get_id(endpoint));
     log_i("Light Sensor created with endpoint_id %d", getEndPointId());
 
     started = true;
-    Serial.print("5");
     return true;
 }
 
@@ -116,8 +112,6 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
         return false;
     }
 
-    Serial.print("In light setter");
-    Serial.print(_rawLight);
 
 
     if (attrVal.val.u16 != _rawLight) 
@@ -134,7 +128,6 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
     }
 
     log_v("Light Sensor set to %.02f%%", (float)_rawLight);
-    Serial.printf("Light Sensor set to %d", _rawLight);
     return true;
 }
 
