@@ -35,7 +35,16 @@ public:
     // begin Matter light Sensor endpoint with initial float light percent
     bool begin(double light = 0.00)
     {
-        return begin(static_cast<uint16_t>(light));
+        if light > 0
+        {
+            cast_light = static_cast<uint16_t>(log10(light)*10000 + 1)
+        }
+        else
+        {
+            cast_light = static_cast<uint16_t>(0)
+        }
+
+        return begin(cast_light);
     }
 
     // stop processing light Sensor Matter events
@@ -44,8 +53,16 @@ public:
     // set the light percent with 1/100th of a percent precision
     bool setlight(uint32_t light)
     {
+        if light > 0
+        {
+            cast_light = static_cast<uint16_t>(log10(light)*10000 + 1)
+        }
+        else
+       {
+            cast_light = static_cast<uint16_t>(0)
+        }
 
-        return setRawLight(static_cast<uint16_t>(light));
+        return setRawLight(cast_light);
     }
 
 

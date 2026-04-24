@@ -30,12 +30,6 @@ using namespace esp_matter;
 using namespace esp_matter::endpoint;
 using namespace chip::app::Clusters;
 
-MatterLightSensor::MatterLightSensor() {}
-
-MatterLightSensor::~MatterLightSensor() 
-{
-    end();
-}
 
 
 bool MatterLightSensor::attributeChangeCB(uint16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val) 
@@ -52,6 +46,13 @@ bool MatterLightSensor::attributeChangeCB(uint16_t endpoint_id, uint32_t cluster
     return true;
 }
 
+MatterLightSensor::MatterLightSensor() {}
+
+MatterLightSensor::~MatterLightSensor()
+{
+    end();
+}
+
 bool MatterLightSensor::begin(uint16_t _rawLight) 
 {
     ArduinoMatter::_init();
@@ -63,7 +64,7 @@ bool MatterLightSensor::begin(uint16_t _rawLight)
 
 
   light_sensor::config_t light_sensor_config;
-  light_sensor_config.illuminance_measurement.illuminance_measured_value = log10(_rawLight)*10000 + 1;
+  light_sensor_config.illuminance_measurement.illuminance_measured_value = _rawLight;
   light_sensor_config.illuminance_measurement.illuminance_min_measured_value = nullptr;
   light_sensor_config.illuminance_measurement.illuminance_max_measured_value = nullptr;
 
@@ -116,7 +117,7 @@ bool MatterLightSensor::setRawLight(uint16_t _rawLight)
 
     if (attrVal.val.u16 != _rawLight) 
     {
-        attrVal.val.u16 = log10(_rawLight)*10000 + 1;
+        attrVal.val.u16 = _rawLight; 
 
         if (!updateAttributeVal(IlluminanceMeasurement::Id, IlluminanceMeasurement::Attributes::MeasuredValue::Id, &attrVal)) 
         {
