@@ -30,25 +30,24 @@ class MatterFlowSensor : public MatterEndPoint, public ArduinoMatter
 public:
   MatterFlowSensor();
   ~MatterFlowSensor();
-  // begin Matter Flow Sensor endpoint with initial float humidity percent
-  bool begin(double humidityPercent = 0.00) {
+  // begin Matter Flow Sensor endpoint with initial float Flow
+  bool begin(double Flow = 0.00) {
 
-    return begin(static_cast<int16_t>(humidityPercent * 10.0f));
+    return begin(static_cast<int16_t>(Flow * 10.0f));
   }
-  // this will just stop processing Flow Sensor Matter events
   void end();
 
-  // set the humidity percent with 1/100th of a percent precision
-  bool setFlow(double humidityPercent) {
-    return setRawFlow(static_cast<int16_t>(humidityPercent * 10.0f));
+  // set the Flow
+  bool setFlow(double Flow) {
+    return setRawFlow(static_cast<int16_t>(Flow * 10.0f));
   }
-  // returns the reported float humidity percent with 1/100th of precision
+  // returns the reported float Flow
   double getFlow() {
     return (double)rawFlow / 10.0;
   }
   // double conversion operator
-  void operator=(double humidityPercent) {
-    setFlow(humidityPercent);
+  void operator=(double Flow) {
+    setFlow(Flow);
   }
   // double conversion operator
   operator double() {

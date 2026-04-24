@@ -89,23 +89,23 @@ bool MatterFlowSensor::setRawFlow(int16_t _rawFlow) {
     return true;
   }
 
-  esp_matter_attr_val_t humidityVal = esp_matter_invalid(NULL);
+  esp_matter_attr_val_t FlowVal = esp_matter_invalid(NULL);
 
-  if (!getAttributeVal(FlowMeasurement::Id, FlowMeasurement::Attributes::MeasuredValue::Id, &humidityVal)) {
+  if (!getAttributeVal(FlowMeasurement::Id, FlowMeasurement::Attributes::MeasuredValue::Id, &FlowVal)) {
     log_e("Failed to get Flow Sensor Attribute.");
     return false;
   }
-  if (humidityVal.val.u16 != _rawFlow) {
-    humidityVal.val.u16 = _rawFlow;
+  if (FlowVal.val.u16 != _rawFlow) {
+    FlowVal.val.u16 = _rawFlow;
     bool ret;
-    ret = updateAttributeVal(FlowMeasurement::Id, FlowMeasurement::Attributes::MeasuredValue::Id, &humidityVal);
+    ret = updateAttributeVal(FlowMeasurement::Id, FlowMeasurement::Attributes::MeasuredValue::Id, &FlowVal);
     if (!ret) {
       log_e("Failed to update Flow Sensor Attribute.");
       return false;
     }
     rawFlow = _rawFlow;
   }
-  log_v("Flow Sensor set to %.02f Percent", (float)_rawFlow / 10.00);
+  log_v("Flow Sensor set to %.02f m3/h", (float)_rawFlow / 10.0f);
 
   return true;
 }
