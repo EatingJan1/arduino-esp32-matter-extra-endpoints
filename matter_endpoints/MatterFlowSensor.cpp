@@ -29,7 +29,7 @@ using namespace esp_matter;
 using namespace esp_matter::endpoint;
 using namespace chip::app::Clusters;
 
-bool MatterFlowSensor::attributeChangeCB(uint16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val) {
+bool MatterFlowSensor::attributeChangeCB(int16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val) {
   bool ret = true;
   if (!started) {
     log_e("Matter Flow Sensor device has not begun.");
@@ -46,7 +46,7 @@ MatterFlowSensor::~MatterFlowSensor() {
   end();
 }
 
-bool MatterFlowSensor::begin(uint16_t _rawFlow) {
+bool MatterFlowSensor::begin(int16_t _rawFlow) {
   ArduinoMatter::_init();
 
   if (getEndPointId() != 0) {
@@ -78,7 +78,7 @@ void MatterFlowSensor::end() {
   started = false;
 }
 
-bool MatterFlowSensor::setRawFlow(uint16_t _rawFlow) {
+bool MatterFlowSensor::setRawFlow(int16_t _rawFlow) {
   if (!started) {
     log_e("Matter Flow Sensor device has not begun.");
     return false;

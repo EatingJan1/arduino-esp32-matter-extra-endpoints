@@ -33,14 +33,14 @@ public:
   // begin Matter Flow Sensor endpoint with initial float humidity percent
   bool begin(double humidityPercent = 0.00) {
 
-    return begin(static_cast<uint16_t>(humidityPercent * 10.0f));
+    return begin(static_cast<int16_t>(humidityPercent * 10.0f));
   }
   // this will just stop processing Flow Sensor Matter events
   void end();
 
   // set the humidity percent with 1/100th of a percent precision
   bool setFlow(double humidityPercent) {
-    return setRawFlow(static_cast<uint16_t>(humidityPercent * 10.0f));
+    return setRawFlow(static_cast<int16_t>(humidityPercent * 10.0f));
   }
   // returns the reported float humidity percent with 1/100th of precision
   double getFlow() {
@@ -56,14 +56,14 @@ public:
   }
 
   // this function is called by Matter internal event processor. It could be overwritten by the application, if necessary.
-  bool attributeChangeCB(uint16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val);
+  bool attributeChangeCB(int16_t endpoint_id, uint32_t cluster_id, uint32_t attribute_id, esp_matter_attr_val_t *val);
 
 protected:
   bool started = false;
-  // implementation keeps humidity relative percentage with 1/100th of a percent precision
-  uint16_t rawFlow = 0;
-  // internal function to set the raw humidity value (Matter Cluster)
-  bool begin(uint16_t _rawFlow);
-  bool setRawFlow(uint16_t _rawFlow);
+  // implementation keeps Flow relative percentage with 1/100th of a percent precision
+  int16_t rawFlow = 0;
+  // internal function to set the raw Flow value (Matter Cluster)
+  bool begin(int16_t _rawFlow);
+  bool setRawFlow(int16_t _rawFlow);
 };
 #endif /* CONFIG_ESP_MATTER_ENABLE_DATA_MODEL */
